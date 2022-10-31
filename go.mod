@@ -1,4 +1,4 @@
-module github.com/sdlp99/gopkg
+module github.com/sdlp99/sdpkg
 
 go 1.19
 
