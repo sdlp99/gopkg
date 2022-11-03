@@ -13,7 +13,7 @@ import (
 
 var (
 	gConfig string = "{}"
-	gPath   string = ""
+	gPath   string = "./"
 )
 
 func GetPath() string {
@@ -21,9 +21,8 @@ func GetPath() string {
 }
 
 func init() {
-	gPath = str.GetCurrentAbPath()
 
-	file, err := ioutil.ReadFile(gPath + "/config.json")
+	file, err := ioutil.ReadFile("./config.json")
 	if err != nil {
 		log.Fatal(err.Error())
 	}
@@ -35,7 +34,7 @@ func init() {
 		gConfig, err = sjson.Set(gConfig, val2,
 			gm.EnSM4(gjson.Get(gConfig, val2).Str))
 	}
-	ioutil.WriteFile(gPath+"/config.json", str.S2b(gConfig), os.ModeAppend)
+	ioutil.WriteFile("./config.json", str.S2b(gConfig), os.ModeAppend)
 
 	for _, val2 := range str1 {
 		gConfig, err = sjson.Set(gConfig, val2,
